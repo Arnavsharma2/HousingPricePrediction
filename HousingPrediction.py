@@ -41,8 +41,8 @@ axis[0].set_title("Before Outlier Filtering")
 
 sns.boxplot(x=df_filtered['price'], ax = axis[1])
 axis[1].set_title("After Outlier Filtering")
-plt.show()
-
+print(f"\n")
+df_statezip_ohe.info()
 
 from sklearn.model_selection import train_test_split
 Y = df_filtered['price']
@@ -60,6 +60,6 @@ y_predicted = model.predict(X_test)
 mse = mean_squared_error(Y_test, y_predicted)
 r2 = r2_score(Y_test, y_predicted)
 
-print(f"Residual error: {mse:,.2f}") 
-print(f"Percentage of certainty: {r2:,.2f}%")
+print(f"\nResidual error: {mse:,.2f}\n") 
+print(f"Percentage of certainty: {r2:,.2f}%\n\n")
 plt.show()
