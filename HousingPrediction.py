@@ -12,12 +12,6 @@ plt.style.use('_mpl-gallery')
 x = df['condition']
 y = df['price']
 
-#plot
-fig, ax = plt.subplots()
-ax.plot(x, y/1E6, 'X', markeredgewidth=0.5)
-ax.set_ylabel("Price in Millions")
-ax.set_xlabel("House Condition 1-5")
-
 from sklearn.preprocessing import OneHotEncoder
 dropper = ['date', 'country', 'street', 'yr_built', 'sqft_above']
 df_copy = df.drop(dropper, axis=1)
@@ -34,11 +28,20 @@ statezip_df = pd.DataFrame(statezip_ohe, columns=ohe.get_feature_names_out(['sta
 
 df_statezip_ohe = pd.concat([df_city_ohe.drop('statezip', axis=1), statezip_df], axis=1)
 
-
 high = 0.99
 low = 0.01
 
 df_filtered = df_statezip_ohe[(df_statezip_ohe['price'] > df_statezip_ohe['price'].quantile(low)) & (df_statezip_ohe['price'] < df_statezip_ohe['price'].quantile(high))]
+
+#plot
+fig, ax = plt.subplots()
+fig, axis = plt.subplots(1, 2, figsize=(12, 5))
+sns.boxplot(x=df_statezip_ohe['price'], ax = axis[0])
+axis[0].set_title("Before Outlier Filtering")
+
+sns.boxplot(x=df_filtered['price'], ax = axis[1])
+axis[1].set_title("After Outlier Filtering")
+plt.show()
 
 
 from sklearn.model_selection import train_test_split
