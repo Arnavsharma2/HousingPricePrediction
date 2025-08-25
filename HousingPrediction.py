@@ -52,3 +52,4 @@ r2 = r2_score(Y_test, y_predicted)
 
 print(f"Residual error: {mse:,.2f}") 
 print(f"Percentage of certainty: {r2:,.2f}%")
+plt.show()
