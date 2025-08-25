@@ -1,0 +1,41 @@
+# Core Scientific & ML Stack
+numpy
+scipy
+pandas
+matplotlib
+seaborn
+scikit-learn
+xgboost
+lightgbm
+catboost
+
+# Deep Learning
+tensorflow
+torch
+torchvision
+torchaudio
+keras
+
+# NLP & Transformers
+transformers
+sentencepiece
+nltk
+spacy
+
+# Notebooks & Visualization
+jupyter
+notebook
+plotly
+tqdm
+joblib
+h5py
+scikit-image
+opencv-python
+
+# Agentic-AI Frameworks
+#langchain
+# agentic-framework
+# openai-agents
+# vectara-agentic
+# pydantic-ai
+#nekro-agent
