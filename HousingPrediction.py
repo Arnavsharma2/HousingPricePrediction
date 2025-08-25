@@ -34,9 +34,16 @@ statezip_df = pd.DataFrame(statezip_ohe, columns=ohe.get_feature_names_out(['sta
 
 df_statezip_ohe = pd.concat([df_city_ohe.drop('statezip', axis=1), statezip_df], axis=1)
 
+
+high = 0.99
+low = 0.01
+
+df_filtered = df_statezip_ohe[(df_statezip_ohe['price'] > df_statezip_ohe['price'].quantile(low)) & (df_statezip_ohe['price'] < df_statezip_ohe['price'].quantile(high))]
+
+
 from sklearn.model_selection import train_test_split
-Y = df_statezip_ohe['price']
-X = df_statezip_ohe.drop('price', axis=1)
+Y = df_filtered['price']
+X = df_filtered.drop('price', axis=1)
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
 
